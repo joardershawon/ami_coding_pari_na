@@ -94,7 +94,7 @@ class SignUpBody extends StatelessWidget {
                   Container(
                     child: ElevatedButton(
                       onPressed: () {
-                        AutoRouter.of(context).push(SignInPageRoute());
+                        AutoRouter.of(context).replace(SignInPageRoute());
                       },
                       child: Text(
                         'Sign Up'.toUpperCase(),

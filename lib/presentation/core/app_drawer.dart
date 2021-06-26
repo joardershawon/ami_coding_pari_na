@@ -1,3 +1,6 @@
+import 'package:ami_coding_pari_na/presentation/searchPage/search_page.dart';
+import 'package:ami_coding_pari_na/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +44,9 @@ class AppDrawer extends StatelessWidget {
                               color: Colors.blue.shade100,
                             ),
                             child: ListTile(
-                              onTap: () {},
+                              onTap: () {
+                                AutoRouter.of(context).push(SearchPageRoute());
+                              },
                               title: const Text('Khoj The Search'),
                               trailing: const Icon(CupertinoIcons.search),
                             ),
@@ -55,7 +60,10 @@ class AppDrawer extends StatelessWidget {
                               color: Colors.blue.shade100,
                             ),
                             child: ListTile(
-                              onTap: () {},
+                              onTap: () {
+                                AutoRouter.of(context)
+                                    .push(ShowImagePageRoute());
+                              },
                               title: const Text('Dekhao Chobi'),
                               trailing: const Icon(CupertinoIcons.photo),
                             ),
