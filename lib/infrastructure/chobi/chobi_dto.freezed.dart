@@ -21,8 +21,8 @@ class _$ChobiDtoTearOff {
   const _$ChobiDtoTearOff();
 
   _ChobiDto call(
-      {String? albumId,
-      String? id,
+      {int? albumId,
+      int? id,
       String? title,
       String? url,
       String? thumbnailUrl}) {
@@ -45,8 +45,8 @@ const $ChobiDto = _$ChobiDtoTearOff();
 
 /// @nodoc
 mixin _$ChobiDto {
-  String? get albumId => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
+  int? get albumId => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   String? get thumbnailUrl => throw _privateConstructorUsedError;
@@ -62,8 +62,8 @@ abstract class $ChobiDtoCopyWith<$Res> {
   factory $ChobiDtoCopyWith(ChobiDto value, $Res Function(ChobiDto) then) =
       _$ChobiDtoCopyWithImpl<$Res>;
   $Res call(
-      {String? albumId,
-      String? id,
+      {int? albumId,
+      int? id,
       String? title,
       String? url,
       String? thumbnailUrl});
@@ -89,11 +89,11 @@ class _$ChobiDtoCopyWithImpl<$Res> implements $ChobiDtoCopyWith<$Res> {
       albumId: albumId == freezed
           ? _value.albumId
           : albumId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -116,8 +116,8 @@ abstract class _$ChobiDtoCopyWith<$Res> implements $ChobiDtoCopyWith<$Res> {
       __$ChobiDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? albumId,
-      String? id,
+      {int? albumId,
+      int? id,
       String? title,
       String? url,
       String? thumbnailUrl});
@@ -144,11 +144,11 @@ class __$ChobiDtoCopyWithImpl<$Res> extends _$ChobiDtoCopyWithImpl<$Res>
       albumId: albumId == freezed
           ? _value.albumId
           : albumId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -176,9 +176,9 @@ class _$_ChobiDto extends _ChobiDto {
       _$_$_ChobiDtoFromJson(json);
 
   @override
-  final String? albumId;
+  final int? albumId;
   @override
-  final String? id;
+  final int? id;
   @override
   final String? title;
   @override
@@ -231,8 +231,8 @@ class _$_ChobiDto extends _ChobiDto {
 
 abstract class _ChobiDto extends ChobiDto {
   const factory _ChobiDto(
-      {String? albumId,
-      String? id,
+      {int? albumId,
+      int? id,
       String? title,
       String? url,
       String? thumbnailUrl}) = _$_ChobiDto;
@@ -241,9 +241,9 @@ abstract class _ChobiDto extends ChobiDto {
   factory _ChobiDto.fromJson(Map<String, dynamic> json) = _$_ChobiDto.fromJson;
 
   @override
-  String? get albumId => throw _privateConstructorUsedError;
+  int? get albumId => throw _privateConstructorUsedError;
   @override
-  String? get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @override
   String? get title => throw _privateConstructorUsedError;
   @override

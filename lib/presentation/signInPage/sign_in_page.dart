@@ -1,7 +1,8 @@
-import 'package:ami_coding_pari_na/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:ami_coding_pari_na/presentation/router/router.gr.dart';
 
 class SignInPage extends StatelessWidget {
   @override

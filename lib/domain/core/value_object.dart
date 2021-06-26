@@ -8,8 +8,8 @@ abstract class ValueObject<T> {
   const ValueObject();
 
   Either<ValueFailure<T>, T> get value;
+
   T getOrCrash() {
-    // id = identity - same as writing (right) => right
     return value.fold((f) => throw UnexpectedValueError(f), id);
   }
 

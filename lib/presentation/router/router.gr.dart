@@ -7,11 +7,11 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import 'presentation/homePage/home_page.dart' as _i4;
-import 'presentation/searchPage/search_page.dart' as _i6;
-import 'presentation/showImagePage/show_image_page.dart' as _i7;
-import 'presentation/signInPage/sign_in_page.dart' as _i5;
-import 'presentation/signUpPage/sign_up_page.dart' as _i3;
+import '../homePage/home_page.dart' as _i4;
+import '../searchPage/search_page.dart' as _i6;
+import '../showImagePage/show_image_page.dart' as _i7;
+import '../signInPage/sign_in_page.dart' as _i5;
+import '../signUpPage/sign_up_page.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])

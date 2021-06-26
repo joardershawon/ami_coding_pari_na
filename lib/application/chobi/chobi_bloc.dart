@@ -21,8 +21,8 @@ class ChobiBloc extends Bloc<ChobiEvent, ChobiState> {
     yield* event.map(
       started: (e) async* {
         yield ChobiState.loadingProgress();
-        final chobirList = await _iChobiRepository.dekhaoChobi();
-        yield ChobiState.loadSuccess(chobirList);
+        var list = await _iChobiRepository.dekhaoChobi();
+        yield ChobiState.loadSuccess(list);
       },
       chobiPressed: (e) async* {},
     );
