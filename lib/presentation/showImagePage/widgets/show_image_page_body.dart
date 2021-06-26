@@ -29,7 +29,7 @@ class ShowImagePageBody extends StatelessWidget {
                   return Container(
                     child: Image.network(
                       chobiList.chobi![index].imageUrl!.value.fold(
-                        (l) => '',
+                        (l) => 'Null',
                         (r) => r,
                       ),
                     ),
