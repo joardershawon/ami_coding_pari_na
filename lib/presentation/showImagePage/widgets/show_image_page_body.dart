@@ -16,7 +16,7 @@ class ShowImagePageBody extends StatelessWidget {
             initial: (_) => Container(),
             loadingProgress: (_) => Center(child: CircularProgressIndicator()),
             loadSuccess: (chobiList) => Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: GridView.builder(
                 padding: const EdgeInsets.all(10),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -28,7 +28,7 @@ class ShowImagePageBody extends StatelessWidget {
                 itemCount: 100,
                 itemBuilder: (BuildContext context, index) {
                   return Container(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
                         color: Colors.blue.shade100,
                         borderRadius: BorderRadius.circular(10),
@@ -48,7 +48,7 @@ class ShowImagePageBody extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
-                          flex: 0,
+                          flex: 1,
                           child: Text(
                             chobiList.chobi![index].imageId!.value.fold(
                               (l) => '',
@@ -58,7 +58,7 @@ class ShowImagePageBody extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          flex: 0,
+                          flex: 2,
                           child: Text(
                             chobiList.chobi![index].imageTitle!.value.fold(
                               (l) => '',
@@ -66,9 +66,11 @@ class ShowImagePageBody extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Spacer(),
+                        Spacer(
+                          flex: 1,
+                        ),
                         Expanded(
-                          flex: 8,
+                          flex: 5,
                           child: Image.network(
                             chobiList.chobi![index].imageUrl!.value.fold(
                               (l) => 'chobi nai',
@@ -76,7 +78,9 @@ class ShowImagePageBody extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Spacer(),
+                        Spacer(
+                          flex: 1,
+                        ),
                       ],
                     ),
                   );
