@@ -31,8 +31,14 @@ class KhojBloc extends Bloc<KhojEvent, KhojState> {
         );
 
         var d = await _ikhojRepository.watchAllKhoj();
+        //.......print.......//
         print(d.array);
-        bool isTrue = d.array!.contains(e.nmbr!);
+
+        var intList = d.array!.split(', ').map(int.parse).toList();
+        bool isTrue = false;
+        for (int item in intList) {
+          item == int.parse(e.nmbr!) ? isTrue = true : isTrue = false;
+        }
         yield KhojState.khojEnded(isTrue);
       },
     );

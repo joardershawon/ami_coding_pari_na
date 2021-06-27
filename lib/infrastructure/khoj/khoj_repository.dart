@@ -20,11 +20,11 @@ class KhojRepository implements IKhojRepository {
     final khojBox = store.box<KhojDb>();
 
     var arrList = arrStr.split(",");
-    List<int> intList = arrList.map(int.parse).toList();
+    var intList = arrList.map(int.parse).toList();
     intList.sort((a, b) => b.compareTo(a));
 
     final khojDB = KhojDb(
-      array: intList.toString(),
+      array: intList.join(', ').toString(),
     );
     khojBox.removeAll();
     khojBox.put(khojDB);
