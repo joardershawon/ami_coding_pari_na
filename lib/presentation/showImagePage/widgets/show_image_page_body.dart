@@ -18,20 +18,66 @@ class ShowImagePageBody extends StatelessWidget {
             loadSuccess: (chobiList) => Container(
               padding: const EdgeInsets.all(10),
               child: GridView.builder(
+                padding: const EdgeInsets.all(10),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 150,
-                  childAspectRatio: 1,
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                 ),
                 itemCount: 100,
                 itemBuilder: (BuildContext context, index) {
                   return Container(
-                    child: Image.network(
-                      chobiList.chobi![index].imageUrl!.value.fold(
-                        (l) => 'Null',
-                        (r) => r,
-                      ),
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Colors.blue.shade100,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(5, 5),
+                            color: Colors.grey,
+                            blurRadius: 5,
+                          ),
+                          BoxShadow(
+                            offset: Offset(-5, -5),
+                            color: Colors.white30,
+                            blurRadius: 5,
+                          ),
+                        ]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 0,
+                          child: Text(
+                            chobiList.chobi![index].imageId!.value.fold(
+                              (l) => '',
+                              (r) => r,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 0,
+                          child: Text(
+                            chobiList.chobi![index].imageTitle!.value.fold(
+                              (l) => '',
+                              (r) => r,
+                            ),
+                          ),
+                        ),
+                        Spacer(),
+                        Expanded(
+                          flex: 8,
+                          child: Image.network(
+                            chobiList.chobi![index].imageUrl!.value.fold(
+                              (l) => 'chobi nai',
+                              (r) => r,
+                            ),
+                          ),
+                        ),
+                        Spacer(),
+                      ],
                     ),
                   );
                 },
