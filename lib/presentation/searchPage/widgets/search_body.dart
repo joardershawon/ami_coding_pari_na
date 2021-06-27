@@ -1,6 +1,9 @@
 import 'package:ami_coding_pari_na/application/khoj/khoj_bloc.dart';
+import 'package:another_flushbar/flushbar.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchBody extends StatelessWidget {
@@ -10,7 +13,24 @@ class SearchBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<KhojBloc, KhojState>(
+    TextEditingController _textController = TextEditingController();
+    TextEditingController _searchTextController = TextEditingController();
+    return BlocConsumer<KhojBloc, KhojState>(
+      listener: (context, state) {
+        state.map(
+          initial: (_) {},
+          khojStarted: (_) => CircularProgressIndicator(),
+          khojEnded: (khoj) => Flushbar(
+            backgroundColor: Colors.blue.shade100,
+            duration: Duration(seconds: 2),
+            messageText: Center(
+              child: Text(
+                khoj.isTrue.toString().toUpperCase(),
+              ),
+            ),
+          )..show(context),
+        );
+      },
       builder: (context, khojState) {
         return SafeArea(
           child: Container(
@@ -32,13 +52,11 @@ class SearchBody extends StatelessWidget {
                         ),
                       ),
                       child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: _textController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           labelText: 'Enter Numbers. Seperate them using "," ',
-                        ),
-                        onChanged: (value) =>
-                            BlocProvider.of<KhojBloc>(context).add(
-                          KhojEvent.arrayPassed(value),
                         ),
                       ),
                     ),
@@ -58,13 +76,13 @@ class SearchBody extends StatelessWidget {
                         ),
                       ),
                       child: TextFormField(
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        controller: _searchTextController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           labelText: 'Khoj the number',
-                        ),
-                        onChanged: (value) =>
-                            BlocProvider.of<KhojBloc>(context).add(
-                          KhojEvent.khojNumber(value),
                         ),
                       ),
                     ),
@@ -90,9 +108,25 @@ class SearchBody extends StatelessWidget {
                             ),
                           ],
                         ),
-                        onPressed: () => BlocProvider.of<KhojBloc>(context).add(
-                          KhojEvent.khojButtonPressed(),
-                        ),
+                        onPressed: () {
+                          if (_textController.text.isNotEmpty &&
+                              _searchTextController.text.isNotEmpty) {
+                            BlocProvider.of<KhojBloc>(context)
+                              ..add(
+                                KhojEvent.khojButtonPressed(
+                                  arr: _textController.text,
+                                  nmbr: _searchTextController.text,
+                                ),
+                              );
+                          } else {
+                            Flushbar(
+                              backgroundColor: Colors.blue.shade100,
+                              duration: Duration(seconds: 2),
+                              messageText: Center(
+                                  child: Text('Please Input VALID values')),
+                            )..show(context);
+                          }
+                        },
                       ),
                     ],
                   ),

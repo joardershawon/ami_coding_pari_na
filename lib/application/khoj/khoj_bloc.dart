@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:ami_coding_pari_na/domain/khoj/i_khoj_repository.dart';
+import 'package:ami_coding_pari_na/domain/khoj/khoj.dart';
+import 'package:ami_coding_pari_na/domain/khoj/value_object.dart';
+import 'package:ami_coding_pari_na/infrastructure/khoj/khoj_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kt_dart/collection.dart';
 
 part 'khoj_event.dart';
 part 'khoj_state.dart';
@@ -12,46 +14,26 @@ part 'khoj_bloc.freezed.dart';
 
 @injectable
 class KhojBloc extends Bloc<KhojEvent, KhojState> {
-  KhojBloc() : super(KhojState.initial());
-
+  KhojBloc(this._ikhojRepository) : super(KhojState.initial());
+  IKhojRepository _ikhojRepository;
   @override
   Stream<KhojState> mapEventToState(
     KhojEvent event,
   ) async* {
-    var arrList = [];
     yield* event.map(
-      started: (e) async* {},
-      arrayPassed: (e) async* {
-        arrList.add(
-          e.arr!.split(","),
-        );
-        yield state.copyWith(arrayList: arrList[0]);
-        print(arrList[0]);
-      },
-      khojNumber: (e) async* {
-        yield state.copyWith(
-          arrayList: state.arrayList,
-          number: e.nmbr,
-        );
-        print(e.nmbr);
-      },
       khojButtonPressed: (e) async* {
-        print(state.arrayList!);
-        print(state.number);
-        if (state.arrayList!.contains(state.number)) {
-          yield state.copyWith(
-            arrayList: state.arrayList,
-            number: state.number,
-            isTrue: true,
-          );
-        } else {
-          yield state.copyWith(
-            arrayList: state.arrayList,
-            number: state.number,
-            isTrue: false,
-          );
-        }
-        print(state.isTrue);
+        yield KhojState.khojStarted();
+        _ikhojRepository.putKhoj(
+          Khoj(
+            arrayString: ArrayString(e.arr),
+            searchString: SearchString(e.nmbr),
+          ),
+        );
+
+        var d = await _ikhojRepository.watchAllKhoj();
+        print(d.array);
+        bool isTrue = d.array!.contains(e.nmbr!);
+        yield KhojState.khojEnded(isTrue);
       },
     );
   }
