@@ -21,10 +21,104 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "2:2710407041748202825",
+      "lastPropertyId": "5:2240991851650836036",
+      "name": "UsrDB",
+      "properties": [
+        {
+          "id": "1:2261764352204292488",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8166675030765391915",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:516368556072994031",
+          "name": "emailId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:8732034888414416164",
+          "relationTarget": "EmailDB"
+        },
+        {
+          "id": "4:7657037895492070843",
+          "name": "passwrdId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "4:3934362107748768290",
+          "relationTarget": "PasswordDB"
+        },
+        {
+          "id": "5:2240991851650836036",
+          "name": "signingOption",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:8473678004488727425",
+      "lastPropertyId": "4:9127745999466484635",
+      "name": "EmailDB",
+      "properties": [
+        {
+          "id": "1:8181781423167523485",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "3:1683047525772676460",
+          "name": "email",
+          "type": 9
+        },
+        {
+          "id": "4:9127745999466484635",
+          "name": "userId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:9209429038332535584",
+          "relationTarget": "UsrDB"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:8225337550416090923",
+      "lastPropertyId": "3:2348054610323696714",
+      "name": "PasswordDB",
+      "properties": [
+        {
+          "id": "1:3672919566907886455",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:9080550801025787321",
+          "name": "password",
+          "type": 9
+        },
+        {
+          "id": "3:2348054610323696714",
+          "name": "userId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:6403523288353608148",
+          "relationTarget": "EmailDB"
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "1:6319703831039842458",
-  "lastIndexId": "0:0",
+  "lastEntityId": "4:8225337550416090923",
+  "lastIndexId": "4:3934362107748768290",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
@@ -33,7 +127,8 @@
   "retiredIndexUids": [],
   "retiredPropertyUids": [
     8423123925060797319,
-    157651551593631462
+    157651551593631462,
+    3955502011909626916
   ],
   "retiredRelationUids": [],
   "version": 1

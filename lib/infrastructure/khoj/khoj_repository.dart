@@ -1,22 +1,17 @@
 import 'package:ami_coding_pari_na/domain/khoj/i_khoj_repository.dart';
 import 'package:ami_coding_pari_na/domain/khoj/khoj.dart';
+import 'package:ami_coding_pari_na/infrastructure/core/open_store.dart';
 import 'package:ami_coding_pari_na/infrastructure/khoj/khoj_db.dart';
 
 import 'package:ami_coding_pari_na/objectbox.g.dart';
 import 'package:injectable/injectable.dart';
-import 'package:path_provider/path_provider.dart';
 
 @LazySingleton(as: IKhojRepository)
 class KhojRepository implements IKhojRepository {
   @override
   void putKhoj(Khoj? khoj) async {
     final arrStr = khoj!.arrayString!.getOrCrash();
-    var dir = await getApplicationDocumentsDirectory();
-    var path = dir.path + 'objectbox';
-    final store = Store(
-      getObjectBoxModel(),
-      directory: path,
-    );
+    Store store = await openStore();
     final khojBox = store.box<KhojDb>();
 
     var arrList = arrStr.split(",");
@@ -33,12 +28,7 @@ class KhojRepository implements IKhojRepository {
 
   @override
   Future<KhojDb> watchAllKhoj() async {
-    var dir = await getApplicationDocumentsDirectory();
-    var path = dir.path + 'objectbox';
-    final store = Store(
-      getObjectBoxModel(),
-      directory: path,
-    );
+    Store store = await openStore();
     final khojBox = store.box<KhojDb>();
     final data = khojBox.getAll().last;
     store.close();
