@@ -5,6 +5,7 @@ import 'package:another_flushbar/flushbar_helper.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,19 +46,20 @@ class SignUpBody extends StatelessWidget {
           return Column(
             children: [
               Expanded(
-                flex: 0,
+                flex: 1,
                 child: Container(
                   child: Center(
                     child: Text(
                       'Sign Up'.toUpperCase(),
-                      style: const TextStyle(fontSize: 20),
+                      style: const TextStyle(
+                        fontSize: 30,
+                      ),
                     ),
                   ),
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: Container(),
+              const Spacer(
+                flex: 2,
               ),
               Expanded(
                 flex: 9,
@@ -149,10 +151,35 @@ class SignUpBody extends StatelessWidget {
                           ),
                         ),
                       ),
+                      const Spacer(),
+                      Container(
+                        child: RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                              text: 'Already Have an account ?'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => AutoRouter.of(context)
+                                    .replace(SignInPageRoute()),
+                              text: ' Sign In'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.orange,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ]),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
+              Spacer(),
             ],
           );
         },

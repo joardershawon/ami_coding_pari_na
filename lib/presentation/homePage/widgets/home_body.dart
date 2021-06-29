@@ -11,9 +11,9 @@ class HomeBody extends StatelessWidget {
       child: Container(
         child: Center(
           child: const Text(
-            'Ami Ki Coding Pari ?',
+            '😭 Ami Ki CODING Pari na? 😭',
             style: TextStyle(
-              fontSize: 30,
+              fontSize: 20,
             ),
           ),
         ),

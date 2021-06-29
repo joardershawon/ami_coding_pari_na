@@ -1,5 +1,6 @@
 import 'package:ami_coding_pari_na/domain/khoj/i_khoj_repository.dart';
 import 'package:ami_coding_pari_na/domain/khoj/khoj.dart';
+import 'package:ami_coding_pari_na/infrastructure/auth/auth_db.dart';
 import 'package:ami_coding_pari_na/infrastructure/core/open_store.dart';
 import 'package:ami_coding_pari_na/infrastructure/khoj/khoj_db.dart';
 
@@ -8,20 +9,27 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IKhojRepository)
 class KhojRepository implements IKhojRepository {
+  var currentDate = DateTime.now();
   @override
   void putKhoj(Khoj? khoj) async {
     final arrStr = khoj!.arrayString!.getOrCrash();
     Store store = await openStore();
     final khojBox = store.box<KhojDb>();
+    final userBox = store.box<UsrDB>();
+    final getUser = userBox.getAll().last;
 
-    var arrList = arrStr.split(",");
+    var arrList = arrStr.split(',');
     var intList = arrList.map(int.parse).toList();
     intList.sort((a, b) => b.compareTo(a));
 
+    var arrStrng = intList.join(',').toString();
+
     final khojDB = KhojDb(
-      array: intList.join(', ').toString(),
+      array: arrStrng,
+      dateTime: currentDate.toString(),
+      userName: getUser.name,
     );
-    khojBox.removeAll();
+
     khojBox.put(khojDB);
     store.close();
   }
@@ -30,9 +38,8 @@ class KhojRepository implements IKhojRepository {
   Future<KhojDb> watchAllKhoj() async {
     Store store = await openStore();
     final khojBox = store.box<KhojDb>();
-    final data = khojBox.getAll().last;
+    final data = khojBox.getAll();
     store.close();
-
-    return data;
+    return data.last;
   }
 }

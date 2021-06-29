@@ -17,7 +17,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(1, 6319703831039842458),
       name: 'KhojDb',
-      lastPropertyId: const IdUid(4, 4043067543589847491),
+      lastPropertyId: const IdUid(6, 4014189871999289422),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -28,6 +28,16 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(4, 4043067543589847491),
             name: 'array',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 6919908864570714761),
+            name: 'dateTime',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 4014189871999289422),
+            name: 'userName',
             type: 9,
             flags: 0)
       ],
@@ -157,9 +167,17 @@ ModelDefinition getObjectBoxModel() {
         objectToFB: (KhojDb object, fb.Builder fbb) {
           final arrayOffset =
               object.array == null ? null : fbb.writeString(object.array!);
-          fbb.startTable(5);
+          final dateTimeOffset = object.dateTime == null
+              ? null
+              : fbb.writeString(object.dateTime!);
+          final userNameOffset = object.userName == null
+              ? null
+              : fbb.writeString(object.userName!);
+          fbb.startTable(7);
           fbb.addInt64(0, object.id ?? 0);
           fbb.addOffset(3, arrayOffset);
+          fbb.addOffset(4, dateTimeOffset);
+          fbb.addOffset(5, userNameOffset);
           fbb.finish(fbb.endTable());
           return object.id ?? 0;
         },
@@ -171,7 +189,11 @@ ModelDefinition getObjectBoxModel() {
               id: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 4),
               array: const fb.StringReader()
-                  .vTableGetNullable(buffer, rootOffset, 10));
+                  .vTableGetNullable(buffer, rootOffset, 10),
+              dateTime: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 12),
+              userName: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 14));
 
           return object;
         }),
@@ -294,6 +316,14 @@ class KhojDb_ {
 
   /// see [KhojDb.array]
   static final array = QueryStringProperty<KhojDb>(_entities[0].properties[1]);
+
+  /// see [KhojDb.dateTime]
+  static final dateTime =
+      QueryStringProperty<KhojDb>(_entities[0].properties[2]);
+
+  /// see [KhojDb.userName]
+  static final userName =
+      QueryStringProperty<KhojDb>(_entities[0].properties[3]);
 }
 
 /// [UsrDB] entity fields to define ObjectBox queries.
