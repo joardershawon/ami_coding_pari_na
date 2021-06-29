@@ -7,9 +7,11 @@ abstract class Khoj with _$Khoj {
   const factory Khoj({
     @required ArrayString? arrayString,
     @required SearchString? searchString,
+    @required DateTime? dateTime,
   }) = _Khoj;
   factory Khoj.empty() => Khoj(
         arrayString: ArrayString(''),
         searchString: SearchString(''),
+        dateTime: DateTime.now(),
       );
 }

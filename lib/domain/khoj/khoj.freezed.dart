@@ -16,10 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$KhojTearOff {
   const _$KhojTearOff();
 
-  _Khoj call({ArrayString? arrayString, SearchString? searchString}) {
+  _Khoj call(
+      {ArrayString? arrayString,
+      SearchString? searchString,
+      DateTime? dateTime}) {
     return _Khoj(
       arrayString: arrayString,
       searchString: searchString,
+      dateTime: dateTime,
     );
   }
 }
@@ -31,6 +35,7 @@ const $Khoj = _$KhojTearOff();
 mixin _$Khoj {
   ArrayString? get arrayString => throw _privateConstructorUsedError;
   SearchString? get searchString => throw _privateConstructorUsedError;
+  DateTime? get dateTime => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $KhojCopyWith<Khoj> get copyWith => throw _privateConstructorUsedError;
@@ -40,7 +45,10 @@ mixin _$Khoj {
 abstract class $KhojCopyWith<$Res> {
   factory $KhojCopyWith(Khoj value, $Res Function(Khoj) then) =
       _$KhojCopyWithImpl<$Res>;
-  $Res call({ArrayString? arrayString, SearchString? searchString});
+  $Res call(
+      {ArrayString? arrayString,
+      SearchString? searchString,
+      DateTime? dateTime});
 }
 
 /// @nodoc
@@ -55,6 +63,7 @@ class _$KhojCopyWithImpl<$Res> implements $KhojCopyWith<$Res> {
   $Res call({
     Object? arrayString = freezed,
     Object? searchString = freezed,
+    Object? dateTime = freezed,
   }) {
     return _then(_value.copyWith(
       arrayString: arrayString == freezed
@@ -65,6 +74,10 @@ class _$KhojCopyWithImpl<$Res> implements $KhojCopyWith<$Res> {
           ? _value.searchString
           : searchString // ignore: cast_nullable_to_non_nullable
               as SearchString?,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -74,7 +87,10 @@ abstract class _$KhojCopyWith<$Res> implements $KhojCopyWith<$Res> {
   factory _$KhojCopyWith(_Khoj value, $Res Function(_Khoj) then) =
       __$KhojCopyWithImpl<$Res>;
   @override
-  $Res call({ArrayString? arrayString, SearchString? searchString});
+  $Res call(
+      {ArrayString? arrayString,
+      SearchString? searchString,
+      DateTime? dateTime});
 }
 
 /// @nodoc
@@ -90,6 +106,7 @@ class __$KhojCopyWithImpl<$Res> extends _$KhojCopyWithImpl<$Res>
   $Res call({
     Object? arrayString = freezed,
     Object? searchString = freezed,
+    Object? dateTime = freezed,
   }) {
     return _then(_Khoj(
       arrayString: arrayString == freezed
@@ -100,6 +117,10 @@ class __$KhojCopyWithImpl<$Res> extends _$KhojCopyWithImpl<$Res>
           ? _value.searchString
           : searchString // ignore: cast_nullable_to_non_nullable
               as SearchString?,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -107,16 +128,18 @@ class __$KhojCopyWithImpl<$Res> extends _$KhojCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Khoj implements _Khoj {
-  const _$_Khoj({this.arrayString, this.searchString});
+  const _$_Khoj({this.arrayString, this.searchString, this.dateTime});
 
   @override
   final ArrayString? arrayString;
   @override
   final SearchString? searchString;
+  @override
+  final DateTime? dateTime;
 
   @override
   String toString() {
-    return 'Khoj(arrayString: $arrayString, searchString: $searchString)';
+    return 'Khoj(arrayString: $arrayString, searchString: $searchString, dateTime: $dateTime)';
   }
 
   @override
@@ -128,14 +151,18 @@ class _$_Khoj implements _Khoj {
                     .equals(other.arrayString, arrayString)) &&
             (identical(other.searchString, searchString) ||
                 const DeepCollectionEquality()
-                    .equals(other.searchString, searchString)));
+                    .equals(other.searchString, searchString)) &&
+            (identical(other.dateTime, dateTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.dateTime, dateTime)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(arrayString) ^
-      const DeepCollectionEquality().hash(searchString);
+      const DeepCollectionEquality().hash(searchString) ^
+      const DeepCollectionEquality().hash(dateTime);
 
   @JsonKey(ignore: true)
   @override
@@ -144,13 +171,17 @@ class _$_Khoj implements _Khoj {
 }
 
 abstract class _Khoj implements Khoj {
-  const factory _Khoj({ArrayString? arrayString, SearchString? searchString}) =
-      _$_Khoj;
+  const factory _Khoj(
+      {ArrayString? arrayString,
+      SearchString? searchString,
+      DateTime? dateTime}) = _$_Khoj;
 
   @override
   ArrayString? get arrayString => throw _privateConstructorUsedError;
   @override
   SearchString? get searchString => throw _privateConstructorUsedError;
+  @override
+  DateTime? get dateTime => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$KhojCopyWith<_Khoj> get copyWith => throw _privateConstructorUsedError;

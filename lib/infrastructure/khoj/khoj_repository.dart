@@ -9,7 +9,6 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IKhojRepository)
 class KhojRepository implements IKhojRepository {
-  var currentDate = DateTime.now();
   @override
   void putKhoj(Khoj? khoj) async {
     final arrStr = khoj!.arrayString!.getOrCrash();
@@ -26,10 +25,10 @@ class KhojRepository implements IKhojRepository {
 
     final khojDB = KhojDb(
       array: arrStrng,
-      dateTime: currentDate.toString(),
+      dateTime: khoj.dateTime.toString(),
       userName: getUser.name,
     );
-
+    khojBox.removeAll();
     khojBox.put(khojDB);
     store.close();
   }
@@ -39,6 +38,10 @@ class KhojRepository implements IKhojRepository {
     Store store = await openStore();
     final khojBox = store.box<KhojDb>();
     final data = khojBox.getAll();
+
+    /// Prints the userdata
+    print(data.last.userName);
+    print(data.last.dateTime);
     store.close();
     return data.last;
   }

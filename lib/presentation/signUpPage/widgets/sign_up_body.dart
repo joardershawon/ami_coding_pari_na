@@ -43,144 +43,146 @@ class SignUpBody extends StatelessWidget {
           );
         },
         builder: (context, signUpstate) {
-          return Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  child: Center(
-                    child: Text(
-                      'Sign Up'.toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: 30,
+          return Container(
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Center(
+                      child: Text(
+                        'Sign Up'.toUpperCase(),
+                        style: const TextStyle(
+                          fontSize: 30,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              const Spacer(
-                flex: 2,
-              ),
-              Expanded(
-                flex: 9,
-                child: Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.green.shade100,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextFormField(
-                          controller: _nameController,
-                          keyboardType: TextInputType.name,
-                          onChanged: (value) {},
-                          decoration: InputDecoration(
-                            focusColor: Colors.amber,
-                            border: InputBorder.none,
-                            prefixIcon: Icon(CupertinoIcons.person),
-                            labelText: 'Name',
+                const Spacer(
+                  flex: 1,
+                ),
+                Expanded(
+                  flex: 10,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.green.shade100,
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.green.shade100,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextFormField(
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          onChanged: (value) {},
-                          decoration: InputDecoration(
-                            focusColor: Colors.amber,
-                            border: InputBorder.none,
-                            prefixIcon: Icon(CupertinoIcons.mail),
-                            labelText: 'Email',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.green.shade100,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextFormField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Icon(CupertinoIcons.lock),
-                            labelText: 'Password',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (_nameController.text.isNotEmpty &&
-                                _emailController.text.isNotEmpty &&
-                                _passwordController.text.isNotEmpty) {
-                              BlocProvider.of<SigninBloc>(context)
-                                ..add(
-                                  SigninEvent.signUpButtonPressed(
-                                    name: _nameController.text,
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  ),
-                                );
-                            } else {
-                              FlushbarHelper.createError(
-                                      message: 'Invalid Input')
-                                  .show(context);
-                            }
-                          },
-                          child: Text(
-                            'Sign Up'.toUpperCase(),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      Container(
-                        child: RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                              text: 'Already Have an account ?'.toUpperCase(),
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          child: TextFormField(
+                            controller: _nameController,
+                            keyboardType: TextInputType.name,
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                              focusColor: Colors.amber,
+                              border: InputBorder.none,
+                              prefixIcon: Icon(CupertinoIcons.person),
+                              labelText: 'Name',
                             ),
-                            TextSpan(
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => AutoRouter.of(context)
-                                    .replace(SignInPageRoute()),
-                              text: ' Sign In'.toUpperCase(),
-                              style: TextStyle(
-                                color: Colors.orange,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ]),
+                          ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.green.shade100,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: TextFormField(
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                              focusColor: Colors.amber,
+                              border: InputBorder.none,
+                              prefixIcon: Icon(CupertinoIcons.mail),
+                              labelText: 'Email',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.green.shade100,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: TextFormField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            keyboardType: TextInputType.visiblePassword,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIcon: Icon(CupertinoIcons.lock),
+                              labelText: 'Password more than 6 character',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (_nameController.text.isNotEmpty &&
+                                  _emailController.text.isNotEmpty &&
+                                  _passwordController.text.isNotEmpty) {
+                                BlocProvider.of<SigninBloc>(context)
+                                  ..add(
+                                    SigninEvent.signUpButtonPressed(
+                                      name: _nameController.text,
+                                      email: _emailController.text,
+                                      password: _passwordController.text,
+                                    ),
+                                  );
+                              } else {
+                                FlushbarHelper.createError(
+                                        message: 'Invalid Input')
+                                    .show(context);
+                              }
+                            },
+                            child: Text(
+                              'Sign Up'.toUpperCase(),
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Container(
+                          child: RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text: 'Already Have an account ?'.toUpperCase(),
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => AutoRouter.of(context)
+                                      .replace(SignInPageRoute()),
+                                text: ' Sign In'.toUpperCase(),
+                                style: TextStyle(
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ]),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Spacer(),
-            ],
+                Spacer(),
+              ],
+            ),
           );
         },
       ),

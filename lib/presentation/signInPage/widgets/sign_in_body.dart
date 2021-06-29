@@ -55,7 +55,7 @@ class SignInBody extends StatelessWidget {
                 flex: 1,
               ),
               Expanded(
-                flex: 2,
+                flex: 0,
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   child: Column(
@@ -105,54 +105,62 @@ class SignInBody extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                child: ElevatedButton(
-                  child: Text(
-                    'Sign In'.toUpperCase(),
-                    style: TextStyle(fontSize: 15),
+              Expanded(
+                flex: 0,
+                child: Container(
+                  child: ElevatedButton(
+                    child: Text(
+                      'Sign In'.toUpperCase(),
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    onPressed: () {
+                      if (_emailController.text.isNotEmpty &&
+                          _passwordController.text.isNotEmpty) {
+                        BlocProvider.of<SigninBloc>(context)
+                          ..add(
+                            SigninEvent.signInButtonPressed(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            ),
+                          );
+                      } else {
+                        FlushbarHelper.createError(
+                          duration: Duration(seconds: 2),
+                          message: 'Input Empty',
+                        ).show(context);
+                      }
+                    },
                   ),
-                  onPressed: () {
-                    if (_emailController.text.isNotEmpty &&
-                        _passwordController.text.isNotEmpty) {
-                      BlocProvider.of<SigninBloc>(context)
-                        ..add(
-                          SigninEvent.signInButtonPressed(
-                            email: _emailController.text,
-                            password: _passwordController.text,
-                          ),
-                        );
-                    } else {
-                      FlushbarHelper.createError(
-                        duration: Duration(seconds: 2),
-                        message: 'Input Empty',
-                      ).show(context);
-                    }
-                  },
                 ),
               ),
-              const Spacer(),
-              Container(
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Don\'t Have an account ?'.toUpperCase(),
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
+              const Spacer(
+                flex: 1,
+              ),
+              Expanded(
+                flex: 0,
+                child: Container(
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Don\'t Have an account ?'.toUpperCase(),
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () =>
-                              AutoRouter.of(context).replace(SignUpPageRoute()),
-                        text: ' Sign Up'.toUpperCase(),
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
+                        TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => AutoRouter.of(context)
+                                .replace(SignUpPageRoute()),
+                          text: ' Sign Up'.toUpperCase(),
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
