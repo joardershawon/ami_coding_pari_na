@@ -45,6 +45,7 @@ class AuthFacade implements IAuthFacade {
       final emailDb = EmailDB(email: emailAddress!.getOrCrash());
       final paswrdDb = PasswordDB(password: password!.getOrCrash());
 
+      /// puts the data in those column
       userBox.put(usrDb);
       emailBox.put(emailDb);
       passwordBox.put(paswrdDb);
@@ -72,6 +73,8 @@ class AuthFacade implements IAuthFacade {
         .query(PasswordDB_.password.contains(password!.getOrCrash()))
         .build();
     final resultPassword = passwordQuery.find();
+
+    /// It means that the email and password is a match and exists in the database
     if (resultEmail.isNotEmpty && resultPassword.isNotEmpty) {
       store.close();
       return right(unit);
@@ -86,6 +89,8 @@ class AuthFacade implements IAuthFacade {
     Store store = await openStore();
     final userBox = store.box<UsrDB>();
     final usr = await getSignedInUser();
+
+    /// Initiate the user to be signed Out
     userBox.put(UsrDB(name: usr.name, signingOption: 'F'));
     store.close();
   }
