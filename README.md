@@ -3,5 +3,5 @@
 A new Flutter project.
 
 
-## This Project has been developed using Flutter. This project is structured using Domain Driven Design (DDD) Architecture.
+## This Project has been developed using Flutter. This project is structured using Domain Driven Design (DDD) Architecture.\n
 ## Local offline Database ( ObjectBox ) is used for storing data.
