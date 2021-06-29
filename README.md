@@ -1,6 +1,6 @@
 # ami_coding_pari_na
 
-A new Flutter project.
+Flutter Demo Project
 
 
 ## This Project has been developed using Flutter.
